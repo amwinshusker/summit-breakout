@@ -1,0 +1,25 @@
+# Create a replicaset for
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: multi-container-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: multi-container-app
+  template:
+    metadata:
+      labels:
+        app: multi-container-app
+    spec:
+      containers:
+      - name: example-nginx-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+      - name: example-mysql-container
+        image: mysql:5.7
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "yourpassword"  # Replace with your actual password
