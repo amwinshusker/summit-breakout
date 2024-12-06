@@ -1,0 +1,18 @@
+# create a pod with two containers
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-container-pod
+  labels:
+    purpose: demonstrate-multi-container
+spec:
+  containers:
+  - name: example-nginx-container
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+  - name: example-mysql-container
+    image: mysql:5.7
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: "yourpassword"
